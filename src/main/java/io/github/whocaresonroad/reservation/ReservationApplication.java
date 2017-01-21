@@ -1,0 +1,15 @@
+package io.github.whocaresonroad.reservation;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/*
+ * Spring boot application.
+ */
+@SpringBootApplication
+public class ReservationApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ReservationApplication.class, args);
+	}
+}
