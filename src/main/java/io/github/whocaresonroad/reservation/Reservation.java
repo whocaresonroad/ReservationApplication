@@ -21,16 +21,14 @@ public class Reservation {
 	private String address = new String("");
 	private String postalCode = new String("");
 	private String city = new String("");
-	private Date startTime;
-	private Date endTime;
+	private Date startTime = new Date();
+	private Date endTime = new Date();
 	@CreatedDate
 	private Date createdDate;
 	@LastModifiedDate
 	private Date modifiedDate;
 
 	public Reservation() {
-		startTime = new Date();
-		endTime = new Date();
 	}
 
 	public Reservation(Reservation reservation) {

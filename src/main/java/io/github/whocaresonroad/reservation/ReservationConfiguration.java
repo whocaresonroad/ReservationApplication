@@ -99,6 +99,11 @@ public class ReservationConfiguration extends AbstractMongoConfiguration {
 	 * Add new length to the array in correct place
 	 */
 	public boolean addReservationSlotLenghtsInMinutes(int newLength) {
+		// Bigger than 0 values only
+		if (newLength < 1) {
+			return false;
+		}
+
 		// Check that the value doesn't exist already
 		for (int i = 0; i < reservationSlotLenghtsInMinutes.length; i++) {
 			if (reservationSlotLenghtsInMinutes[i] == newLength) {
@@ -132,6 +137,11 @@ public class ReservationConfiguration extends AbstractMongoConfiguration {
 	}
 
 	public boolean removeReservationSlotLenghtsInMinutes(int lengthToRemove) {
+		// Bigger than 0 values only
+		if (lengthToRemove < 1) {
+			return false;
+		}
+
 		// Only remove if there is at least one left after removal
 		if (reservationSlotLenghtsInMinutes.length >= 2) {
 			// First create new array
@@ -158,9 +168,15 @@ public class ReservationConfiguration extends AbstractMongoConfiguration {
 	return false;
 	}
 
-	public void setNumberOfFreeSlotsToShow(int slots) {
-		numberOfFreeSlotsToShow = slots;
+	public boolean setNumberOfFreeSlotsToShow(int slots) {
+		if (slots > 0) {
+			numberOfFreeSlotsToShow = slots;
 
-		// TODO: add to the database
+			// TODO: add to the database
+
+			return true;
 		}
+
+		return false;
+	}
 }
