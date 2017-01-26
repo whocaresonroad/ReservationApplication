@@ -3,6 +3,8 @@ package io.github.whocaresonroad.reservation;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.github.whocaresonroad.util.DateTimeUtil;
+
 /*
  * Holder class for holding the slot start time and length and presentation string for the start time
  */
@@ -34,11 +36,7 @@ public class ReservationSlot {
 	}
 
 	public Date getEndTime() {
-		Calendar start = Calendar.getInstance();
-		start.setTime(startTime);
-		start.add(Calendar.MINUTE, slotLenghtInMinutes);
-
-		return start.getTime();
+		return DateTimeUtil.advance(startTime, Calendar.MINUTE, slotLenghtInMinutes);
 	}
 
 	public String getDisplayString() {

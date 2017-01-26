@@ -1,5 +1,7 @@
 package io.github.whocaresonroad.reservation;
 
+import java.util.Date;
+
 import io.github.whocaresonroad.util.DateTimeUtil;
 
 /*
@@ -18,7 +20,13 @@ public class ReservationRepresentation {
 	private String modifiedDate;
 
 	ReservationRepresentation(Reservation reservation, String formatString) {
-		id = (reservation.getId());
+		//  DB managed fields can be null
+		String id = reservation.getId();
+		if (id != null) {
+			this.id = id; 
+		} else {
+			this.id = "";
+		}
 		firstName = reservation.getFirstName();
 		lastName = reservation.getLastName();
 		address = reservation.getAddress();
@@ -26,8 +34,24 @@ public class ReservationRepresentation {
 		city = reservation.getCity();
 		startTime = DateTimeUtil.format(reservation.getStartTime(),formatString);
 		endTime = DateTimeUtil.format(reservation.getEndTime(),formatString);
-		createdDate = DateTimeUtil.format(reservation.getCreatedDate(),formatString);
-		modifiedDate = DateTimeUtil.format(reservation.getModifiedDate(),formatString);
+
+		//  DB managed fields can be null
+		Date date = reservation.getCreatedDate();
+		if (date != null) {
+			createdDate = DateTimeUtil.format(date,formatString);
+		}
+		else {
+			createdDate = "";
+		}
+
+		//  DB managed fields can be null
+		date = reservation.getModifiedDate();
+		if (date != null) {
+			modifiedDate = DateTimeUtil.format(date,formatString);
+		}
+		else {
+			modifiedDate = "";
+		}
 	}
 
 	public String getId() {

@@ -128,7 +128,7 @@ public class ReservationRepositoryImpl implements ReservationRepositoryCustom {
 	 * Check if the db has reservation which conflicts with the given one and was created earlier.
 	 * @return True if there was conflicting reservation, false otherwise.
 	 */
-	public boolean hasEarlierOverlappingReservation(Reservation reservation) {
+	private boolean hasEarlierOverlappingReservation(Reservation reservation) {
 
 		// Can't end during our reservation if it was reserved before ours
 		Long overlapped = mongoTemplate.count(query(where("endTime").gt(reservation.getStartTime())
